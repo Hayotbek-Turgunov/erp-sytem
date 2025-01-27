@@ -1,7 +1,9 @@
+import Dashboard from "./Dashboard/page";
+
 export default function Home() {
   return (
-    <div>
-      <h2>Hello Dashboard</h2>
+    <div className="p-6">
+      <Dashboard />
     </div>
   );
 }
