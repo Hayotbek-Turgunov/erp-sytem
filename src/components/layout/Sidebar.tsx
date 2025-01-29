@@ -8,98 +8,38 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import {
-  SidebarMenuSub,
-  SidebarMenuSubItem,
-  SidebarMenuSubButton,
-} from "@/components/ui/sidebar-menu-sub";
 import { Home, Inbox, Calendar, Search, Settings } from "lucide-react";
-import {
-  Collapsible,
-  CollapsibleTrigger,
-  CollapsibleContent,
-} from "@radix-ui/react-collapsible";
 
-// Sidebar uchun menyu elementlari
 const items = [
-  {
-    title: "Home",
-    url: "/home",
-    icon: Home,
-    subItems: [
-      { title: "Sub Home 1", url: "/home/sub1" },
-      { title: "Sub Home 2", url: "/home/sub2" },
-    ],
-  },
-  {
-    title: "Inbox",
-    url: "/inbox",
-    icon: Inbox,
-    subItems: [
-      { title: "Sub Inbox 1", url: "/inbox/sub1" },
-      { title: "Sub Inbox 2", url: "/inbox/sub2" },
-    ],
-  },
-  {
-    title: "Calendar",
-    url: "/calendar",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "/search",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "/settings",
-    icon: Settings,
-  },
+  { title: "Home", url: "/home", icon: Home },
+  { title: "Inbox", url: "/inbox", icon: Inbox },
+  { title: "Calendar", url: "/calendar", icon: Calendar },
+  { title: "Search", url: "/search", icon: Search },
+  { title: "Settings", url: "/settings", icon: Settings },
 ];
 
 export function AppSidebar() {
   return (
-    <Sidebar>
+    <Sidebar className="bg-gray-800 text-white w-64 h-screen">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-lg font-bold p-4 border-b border-gray-700">
+            Application
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
-                <Collapsible
-                  key={item.title}
-                  defaultOpen={false}
-                  className="group/collapsible"
-                >
-                  <SidebarMenuItem>
-                    <CollapsibleTrigger asChild>
-                      <SidebarMenuButton asChild>
-                        <a
-                          href={item.url}
-                          className="flex items-center space-x-2"
-                        >
-                          <item.icon className="w-5 h-5" />
-                          <span>{item.title}</span>
-                        </a>
-                      </SidebarMenuButton>
-                    </CollapsibleTrigger>
-                    {item.subItems && (
-                      <CollapsibleContent>
-                        <SidebarMenuSub>
-                          {item.subItems.map((subItem, index) => (
-                            <SidebarMenuSubItem key={index}>
-                              <SidebarMenuSubButton asChild>
-                                <a href={subItem.url} className="pl-8 block">
-                                  {subItem.title}
-                                </a>
-                              </SidebarMenuSubButton>
-                            </SidebarMenuSubItem>
-                          ))}
-                        </SidebarMenuSub>
-                      </CollapsibleContent>
-                    )}
-                  </SidebarMenuItem>
-                </Collapsible>
+                <SidebarMenuItem key={item.title} className="hover:bg-gray-700">
+                  <SidebarMenuButton asChild>
+                    <a
+                      href={item.url}
+                      className="flex items-center p-3 space-x-3 text-sm"
+                    >
+                      <item.icon className="w-5 h-5" />
+                      <span>{item.title}</span>
+                    </a>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
               ))}
             </SidebarMenu>
           </SidebarGroupContent>

@@ -1,25 +1,18 @@
-import { cookies } from "next/headers";
-
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import "./globals.css";
 import { AppSidebar } from "@/components/layout/Sidebar";
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // Cookie orqali sidebarning default ochiq yoki yopiq holatini o'qish
-  const cookieStore = cookies();
-  const defaultOpen = cookieStore.get("sidebar:state")?.value === "true";
-
   return (
     <html lang="en">
-      <body>
-        <SidebarProvider defaultOpen={defaultOpen}>
+      <body className="bg-gray-100 text-gray-900">
+        <div className="flex">
           <AppSidebar />
-          <SidebarTrigger />
-          <main>{children}</main>
-        </SidebarProvider>
+          <main className="flex-1 p-6">{children}</main>
+        </div>
       </body>
     </html>
   );
