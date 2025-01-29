@@ -1,25 +1,25 @@
-import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
-import Sidebar from "@/components/layout/Sidebar";
+import { cookies } from "next/headers";
 
-export const metadata = {
-  title: "ERP System",
-  description: "A scalable ERP system for educational centers.",
-};
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/layout/Sidebar";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  // Cookie orqali sidebarning default ochiq yoki yopiq holatini o'qish
+  const cookieStore = cookies();
+  const defaultOpen = cookieStore.get("sidebar:state")?.value === "true";
+
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        <div className="flex">
-          <Sidebar />
-          <main className="ml-64 p-4 w-full">{children}</main>
-        </div>
+        <SidebarProvider defaultOpen={defaultOpen}>
+          <AppSidebar />
+          <SidebarTrigger />
+          <main>{children}</main>
+        </SidebarProvider>
       </body>
     </html>
   );

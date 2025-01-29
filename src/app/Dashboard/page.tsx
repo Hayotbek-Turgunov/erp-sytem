@@ -3,6 +3,7 @@ export default function Dashboard() {
     { title: "Total Students", value: 150, color: "bg-blue-500" },
     { title: "Total Teachers", value: 25, color: "bg-green-500" },
     { title: "Monthly Income", value: "$12,000", color: "bg-purple-500" },
+    { title: "Total Courses", value: 10, color: "bg-red-500" },
   ];
 
   return (
