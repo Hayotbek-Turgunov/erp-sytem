@@ -11,9 +11,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <SidebarProvider>
-          <div className="flex">
+          <div className="flex w-full">
             <AppSidebar />
-            <main className="flex-1 p-6">{children}</main>
+            <main className="w-full">{children}</main>
           </div>
         </SidebarProvider>
       </body>

@@ -1,3 +1,6 @@
+"use client";
+
+import React, { useState } from "react";
 import {
   Sidebar,
   SidebarContent,
@@ -5,18 +8,11 @@ import {
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import {
-  Collapsible,
-  CollapsibleTrigger,
-  CollapsibleContent,
-} from "@radix-ui/react-collapsible";
-import {
   Home,
   User,
-  GraduationCap,
   Users,
   Calendar,
   BookOpen,
@@ -26,8 +22,12 @@ import {
   Bell,
   MessageCircle,
   Archive,
+  Settings,
+  LogOut,
+  Info,
 } from "lucide-react";
 
+// Sidebar menyu elementlari
 const items = [
   { title: "Home", url: "/home", icon: Home, subItems: [] },
   {
@@ -42,7 +42,7 @@ const items = [
   {
     title: "Teachers",
     url: "/teachers",
-    icon: GraduationCap,
+    icon: Users,
     subItems: [
       { title: "Teacher List", url: "/teachers/list" },
       { title: "Add Teacher", url: "/teachers/add" },
@@ -51,19 +51,10 @@ const items = [
   {
     title: "Students",
     url: "/students",
-    icon: User,
+    icon: Users,
     subItems: [
       { title: "Student List", url: "/students/list" },
       { title: "Add Student", url: "/students/add" },
-    ],
-  },
-  {
-    title: "Parents",
-    url: "/parents",
-    icon: Users,
-    subItems: [
-      { title: "Parent List", url: "/parents/list" },
-      { title: "Add Parent", url: "/parents/add" },
     ],
   },
   {
@@ -90,7 +81,7 @@ const items = [
     icon: FileText,
     subItems: [
       { title: "Exam List", url: "/exams/list" },
-      { title: "Schedule Exam", url: "/exams/schedule" },
+      { title: "Add Exam", url: "/exams/add" },
     ],
   },
   {
@@ -107,8 +98,8 @@ const items = [
     url: "/results",
     icon: BarChart2,
     subItems: [
-      { title: "View Results", url: "/results/view" },
-      { title: "Generate Report", url: "/results/report" },
+      { title: "Result List", url: "/results/list" },
+      { title: "Add Result", url: "/results/add" },
     ],
   },
   {
@@ -116,14 +107,14 @@ const items = [
     url: "/attendance",
     icon: CheckCircle,
     subItems: [
-      { title: "View Attendance", url: "/attendance/view" },
+      { title: "Attendance List", url: "/attendance/list" },
       { title: "Mark Attendance", url: "/attendance/mark" },
     ],
   },
   {
     title: "Events",
     url: "/events",
-    icon: Calendar,
+    icon: Bell,
     subItems: [
       { title: "Event List", url: "/events/list" },
       { title: "Add Event", url: "/events/add" },
@@ -141,7 +132,7 @@ const items = [
   {
     title: "Announcements",
     url: "/announcements",
-    icon: Bell,
+    icon: Archive,
     subItems: [
       { title: "Announcement List", url: "/announcements/list" },
       { title: "Add Announcement", url: "/announcements/add" },
@@ -150,62 +141,95 @@ const items = [
   {
     title: "Subjects",
     url: "/subjects",
-    icon: Archive,
+    icon: BookOpen,
     subItems: [
       { title: "Subject List", url: "/subjects/list" },
       { title: "Add Subject", url: "/subjects/add" },
     ],
   },
+  {
+    title: "Settings",
+    url: "/settings",
+    icon: Settings,
+    subItems: [
+      { title: "Profile Settings", url: "/settings/profile" },
+      { title: "System Settings", url: "/settings/system" },
+    ],
+  },
+  {
+    title: "Logout",
+    url: "/logout",
+    icon: LogOut,
+    subItems: [],
+  },
+  {
+    title: "About",
+    url: "/about",
+    icon: Info,
+    subItems: [],
+  },
 ];
 
 export function AppSidebar() {
+  // Ochiladigan elementlar uchun state
+  const [openItems, setOpenItems] = useState<{ [key: string]: boolean }>({});
+
+  // Elementni ochish yoki yopish funksiyasi
+  const toggleItem = (title: string) => {
+    setOpenItems((prev) => ({
+      ...prev,
+      [title]: !prev[title], // Ochish yoki yopish
+    }));
+  };
+
   return (
     <Sidebar className="bg-gray-900 text-white w-64 h-screen">
-      <SidebarContent className="bg-slate-800">
+      <SidebarContent className="bg-slate-800 text-white">
         <SidebarGroup>
-          <SidebarGroupLabel className="text-lg font-bold pt-8 pl-3 pb-8 border-b border-gray-700 text-green-200">
+          <SidebarGroupLabel className="text-lg font-bold pt-8 pl-4 pb-8 border-b border-gray-700 text-emerald-500">
             ERP System
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
-                <Collapsible key={item.title} className="group">
+                <div key={item.title} className="group">
                   {/* Parent Menu Item */}
                   <SidebarMenuItem>
-                    <CollapsibleTrigger asChild>
-                      <SidebarMenuButton asChild>
-                        <div className="flex items-center justify-between w-full p-3 space-x-3 text-sm cursor-pointer hover:bg-gray-800 hover:text-white">
-                          <div className="flex items-center space-x-3">
-                            <item.icon className="w-5 h-5" />
-                            <span>{item.title}</span>
-                          </div>
-                          {item.subItems.length > 0 && (
-                            <span className="text-gray-400 group-open:rotate-90 transition-transform">
-                              ▶
-                            </span>
-                          )}
-                        </div>
-                      </SidebarMenuButton>
-                    </CollapsibleTrigger>
+                    <div
+                      onClick={() => toggleItem(item.title)}
+                      className="flex items-center justify-between w-full p-3 space-x-3 text-sm cursor-pointer hover:bg-gray-800"
+                    >
+                      <div className="flex items-center space-x-3">
+                        <item.icon className="w-5 h-5" />
+                        <span>{item.title}</span>
+                      </div>
+                      {item.subItems.length > 0 && (
+                        <span
+                          className={`text-gray-400 transform transition-transform duration-300 ${
+                            openItems[item.title] ? "rotate-90" : ""
+                          }`}
+                        >
+                          ▶
+                        </span>
+                      )}
+                    </div>
                   </SidebarMenuItem>
 
                   {/* Sub Items */}
-                  {item.subItems.length > 0 && (
-                    <CollapsibleContent>
-                      <div className="pl-8">
-                        {item.subItems.map((subItem) => (
-                          <a
-                            key={subItem.title}
-                            href={subItem.url}
-                            className="block p-2 text-sm text-gray-400 hover:bg-gray-700 hover:text-white rounded"
-                          >
-                            {subItem.title}
-                          </a>
-                        ))}
-                      </div>
-                    </CollapsibleContent>
+                  {item.subItems.length > 0 && openItems[item.title] && (
+                    <div className="pl-8">
+                      {item.subItems.map((subItem) => (
+                        <a
+                          key={subItem.title}
+                          href={subItem.url}
+                          className="block p-2 text-sm text-gray-400 hover:bg-gray-700 hover:text-white rounded"
+                        >
+                          {subItem.title}
+                        </a>
+                      ))}
+                    </div>
                   )}
-                </Collapsible>
+                </div>
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
