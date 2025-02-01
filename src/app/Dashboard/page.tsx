@@ -124,7 +124,7 @@ export default function StudentsTable() {
   return (
     <div className="p-6 bg-gray-900 text-white">
       <h2 className="text-2xl font-bold mb-4">Students</h2>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto overflow-y-hidden h-screen">
         <Table className="min-w-full table-auto border-separate border-spacing-y-3">
           <TableHeader className="bg-gray-800">
             <TableRow>
