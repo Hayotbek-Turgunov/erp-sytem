@@ -122,10 +122,10 @@ export default function StudentsTable() {
   ];
 
   return (
-    <div className="p-6 bg-[#000000] text-white">
+    <div className="p-6 bg-[#000] text-white">
       <h2 className="text-2xl font-bold mb-4">Students</h2>
       <div className=" overflow-y-hidden h-screen">
-        <Table className="min-w-full table-auto border-separate border-spacing-y-3">
+        <Table className="min-w-full h-scree table-auto border-separate border-spacing-y-3">
           <TableHeader className="bg-gray-800">
             <TableRow>
               <TableHead className="py-3 px-4 text-left">Full Name</TableHead>
@@ -143,7 +143,7 @@ export default function StudentsTable() {
             {students.map((student, index) => (
               <TableRow
                 key={index}
-                className="hover:bg-gray-800 transition duration-200"
+                className="hover:bg-gray-900 transition duration-200"
               >
                 <TableCell className="py-3 px-4">
                   <div className="flex items-center space-x-3">

@@ -48,10 +48,10 @@ const items = [
 
 export function AppSidebar() {
   return (
-    <Sidebar className="bg-gray-900 text-white w-64 h-screen">
-      <SidebarContent className="bg-[#09090B] h-screen">
+    <Sidebar className="bg-[#09090B] text-white w-64 h-screen">
+      <SidebarContent className="bg-[#09090B] h-screen ">
         <SidebarGroup>
-          <SidebarGroupLabel className="font-bold pt-8 pl-4 pb-8 border-b gap-3 border-gray-700 text-white">
+          <SidebarGroupLabel className="font-bold pt-8 pl-3 pb-8 border-b gap-3 border-gray-700 text-white">
             <img
               width={40}
               height={40}
@@ -68,7 +68,7 @@ export function AppSidebar() {
                   <SidebarMenuButton asChild>
                     <a
                       href={item.url}
-                      className="flex items-center space-x-3 p-3 text-sm text-gray bg-gray-950   rounded"
+                      className="flex items-center space-x-3 p-3 text-sm text-gray    rounded"
                     >
                       <item.icon className="w-5 h-5" />
                       <span>{item.title}</span>
