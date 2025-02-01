@@ -9,7 +9,7 @@ import {
 
 export function Navbar() {
   return (
-    <header className="flex items-center justify-between bg-gray-900 text-white px-7 py-4 shadow-md sticky top-0 z-50">
+    <header className="flex items-center justify-between bg-[#09090B] text-white px-7 py-3 shadow-md sticky top-0 z-50">
       <div className="hidden md:flex items-center text-sm text-gray-400 space-x-2">
         <span className="hover:text-white cursor-pointer">Dashboard</span>
         <span>{">"}</span>
