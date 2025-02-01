@@ -25,7 +25,6 @@ import {
   Info,
 } from "lucide-react";
 
-// Menu items.
 const items = [
   { title: "Home", url: "/home", icon: Home },
   { title: "Admins", url: "/admins", icon: User },

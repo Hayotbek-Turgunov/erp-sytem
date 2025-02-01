@@ -9,6 +9,12 @@
   font-family: sans-serif;
 }
 
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
