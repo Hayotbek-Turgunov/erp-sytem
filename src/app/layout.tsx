@@ -9,14 +9,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="h-screen">
-      <body className="h-screen">
+    <html lang="en" className="min-h-screen">
+      <body className="min-h-screen overflow-auto">
         <SidebarProvider>
-          <div className="flex h-screen w-full">
+          <div className="flex min-h-screen w-full">
             <AppSidebar />
             <div className="flex-1 flex flex-col">
               <Navbar />
-              <main className="flex-1 bg-[#09090B] h-screen p-7">
+              <main className="flex-1 bg-darkBg p-7 overflow-auto">
                 {children}
               </main>
             </div>

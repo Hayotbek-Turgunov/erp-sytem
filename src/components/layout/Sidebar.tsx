@@ -24,6 +24,7 @@ import {
   LogOut,
   Info,
 } from "lucide-react";
+import Link from "next/link";
 
 const items = [
   { title: "Home", url: "/home", icon: Home },
@@ -65,13 +66,13 @@ export function AppSidebar() {
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <a
+                    <Link
                       href={item.url}
                       className="flex items-center space-x-3 p-3 text-sm text-gray    rounded"
                     >
                       <item.icon className="w-5 h-5" />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
