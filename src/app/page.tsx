@@ -1,9 +1,9 @@
-import Dashboard from "../app/dashboard/page";
+import StudentsTable from "./dashboard/page";
 
 export default function Home() {
   return (
     <div>
-      <Dashboard />
+      <StudentsTable />
     </div>
   );
 }
