@@ -16,7 +16,7 @@ export default function RootLayout({
             <AppSidebar />
             <div className="flex-1 flex flex-col">
               <Navbar />
-              <main className="flex-1 bg-darkBg p-4 overflow-auto">
+              <main className="flex-1 bg-darkBg p-8 overflow-auto">
                 {children}
               </main>
             </div>

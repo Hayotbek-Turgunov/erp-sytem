@@ -1,5 +1,4 @@
-import Dashboard from "./dashboard/page";
-
-export default function Home() {
-  return <Dashboard />;
+import Home from "./home/page";
+export default function About() {
+  return <Home />;
 }

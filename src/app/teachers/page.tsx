@@ -150,7 +150,7 @@ export default function StudentsTable() {
   ];
 
   return (
-    <div className="p-4 bg-[#000] text-white">
+    <div className=" bg-[#000] text-white">
       <h2 className="text-2xl font-bold mb-4">Teachers</h2>
       <div className="overflow-y-auto max-h-[calc(100vh-170px)]  rounded-lg">
         <Table className="min-w-full table-auto border-separate border-spacing-y-3">

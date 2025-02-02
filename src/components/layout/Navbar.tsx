@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   Bell,
@@ -6,18 +8,42 @@ import {
   ChevronDown,
   Settings,
 } from "lucide-react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export function Navbar() {
+  const pathname = usePathname();
+  const pathnames = pathname.split("/").filter((x) => x);
+
   return (
     <header className="flex items-center justify-between bg-[#09090B] text-white px-7 py-3 shadow-md sticky top-0 z-50">
+      {/* Breadcrumb Section */}
       <div className="hidden md:flex items-center text-sm text-gray-400 space-x-2">
-        <span className="hover:text-white cursor-pointer">Dashboard</span>
-        <span>{">"}</span>
-        <span className="hover:text-white cursor-pointer">List</span>
-        <span>{">"}</span>
-        <span className="text-white">Students</span>
+        <Link href="/" className="hover:text-white cursor-pointer">
+          Dashboard
+        </Link>
+        {pathnames.map((value, index) => {
+          const href = "/" + pathnames.slice(0, index + 1).join("/");
+          const isLast = index === pathnames.length - 1;
+
+          return (
+            <React.Fragment key={href}>
+              <span>{">"}</span>
+              {isLast ? (
+                <span className="text-white">
+                  {value.charAt(0).toUpperCase() + value.slice(1)}
+                </span>
+              ) : (
+                <Link href={href} className="hover:text-white cursor-pointer">
+                  {value.charAt(0).toUpperCase() + value.slice(1)}
+                </Link>
+              )}
+            </React.Fragment>
+          );
+        })}
       </div>
 
+      {/* Action Buttons Section */}
       <div className="flex items-center space-x-4">
         <button className="p-2 rounded-full hover:bg-gray-800">
           <Search className="w-5 h-5" />
