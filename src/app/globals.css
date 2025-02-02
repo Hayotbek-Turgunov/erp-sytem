@@ -9,10 +9,24 @@
   font-family: sans-serif;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 html,
 body {
   margin: 0;
   padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background-color: black;
+}
+
+main {
+  margin: 0;
+  padding: 0;
+  height: calc(100vh - 4rem);
+  overflow-y: auto;
 }
 
 @layer base {
