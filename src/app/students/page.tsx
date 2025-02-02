@@ -147,7 +147,6 @@ export default function StudentsTable() {
       birthday: "June 04, 1996",
       address: "Tashkent, Uzbekistan",
     },
-    // ... boshqa talaba ma'lumotlari
   ];
 
   return (

@@ -92,14 +92,14 @@ export default function Result() {
                 dataKey="month"
                 position="insideLeft"
                 offset={8}
-                style={{ fill: "#000", fontSize: 12, fontWeight: "bold" }} // Rangni qizilga sozlash
+                style={{ fill: "#000", fontSize: 12, fontWeight: "bold" }}
               />
-              {/* Desktop Value Labels */}
+
               <LabelList
                 dataKey="desktop"
                 position="right"
                 offset={8}
-                style={{ fill: "#fff", fontSize: 12, fontWeight: "bold" }} // Rangni yashilga sozlash
+                style={{ fill: "#fff", fontSize: 12, fontWeight: "bold" }}
               />
             </Bar>
           </BarChart>
