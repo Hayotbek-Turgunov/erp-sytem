@@ -43,15 +43,24 @@ export function Navbar() {
         })}
       </div>
 
-      {/* Action Buttons Section */}
       <div className="flex items-center space-x-4">
-        <button className="p-2 rounded-full hover:bg-gray-800">
+        <button
+          className="p-2 rounded-full hover:bg-gray-800"
+          aria-label="Search"
+        >
           <Search className="w-5 h-5" />
         </button>
-        <button className="p-2 rounded-full hover:bg-gray-800">
+
+        <button
+          className="p-2 rounded-full hover:bg-gray-800"
+          aria-label="Bell"
+        >
           <Bell className="w-5 h-5" />
         </button>
-        <button className="p-2 rounded-full hover:bg-gray-800">
+        <button
+          className="p-2 rounded-full hover:bg-gray-800"
+          aria-label="Message"
+        >
           <MessageCircle className="w-5 h-5" />
         </button>
         <div className="flex items-center space-x-2">
@@ -59,6 +68,7 @@ export function Navbar() {
             src="https://picsum.photos/40"
             alt="User Avatar"
             className="w-8 h-8 rounded-full"
+            aria-label="User img"
           />
           <div className="text-sm">
             <span className="block font-medium">Jack Smith</span>
@@ -66,7 +76,10 @@ export function Navbar() {
           </div>
           <ChevronDown className="w-4 h-4 text-gray-400" />
         </div>
-        <button className="p-2 rounded-full hover:bg-gray-800">
+        <button
+          className="p-2 rounded-full hover:bg-gray-800"
+          aria-label="Settings"
+        >
           <Settings className="w-5 h-5" />
         </button>
       </div>

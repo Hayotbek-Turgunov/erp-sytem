@@ -10,6 +10,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full">
+      <head>
+        <title>Erp-System</title>
+      </head>
       <body className="h-full overflow-auto">
         <SidebarProvider>
           <div className="flex min-h-screen w-full">

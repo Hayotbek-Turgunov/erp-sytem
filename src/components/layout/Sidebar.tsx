@@ -51,16 +51,19 @@ export function AppSidebar() {
     <Sidebar className="bg-[#09090B] text-white w-64 h-screen">
       <SidebarContent className="bg-[#09090B] h-screen ">
         <SidebarGroup>
-          <SidebarGroupLabel className="font-bold pt-8 pl-3 pb-8 border-b gap-3 border-gray-700 text-white">
+          <SidebarGroupLabel className="font-bold pt-8 pl-3 pb-8 border-b gap-3 border-gray-700 text-white sticky top-0 bg-black z-50">
             <img
               width={40}
               height={40}
               src="/icons/SidebarLogo.svg"
               alt="Sidebar logo"
+              className="inline-block"
             />
-
-            <span className="text-white text-sm">School Management System</span>
+            <span className="text-white text-sm ml-2">
+              School Management System
+            </span>
           </SidebarGroupLabel>
+
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
@@ -68,7 +71,7 @@ export function AppSidebar() {
                   <SidebarMenuButton asChild>
                     <Link
                       href={item.url}
-                      className="flex items-center space-x-3 p-3 text-sm text-gray    rounded"
+                      className="flex items-center space-x-3 p-3 text-sm text-gray rounded"
                     >
                       <item.icon className="w-5 h-5" />
                       <span>{item.title}</span>

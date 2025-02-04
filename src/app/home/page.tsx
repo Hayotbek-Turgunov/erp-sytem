@@ -34,6 +34,12 @@ const chartData2 = [
   { month: "April", desktop: 73, mobile: 190 },
   { month: "May", desktop: 209, mobile: 130 },
   { month: "June", desktop: 214, mobile: 140 },
+  { month: "July", desktop: 280, mobile: 150 },
+  { month: "Avgust", desktop: 290, mobile: 180 },
+  { month: "September", desktop: 230, mobile: 160 },
+  { month: "October", desktop: 240, mobile: 170 },
+  { month: "November", desktop: 245, mobile: 200 },
+  { month: "December", desktop: 255, mobile: 210 },
 ];
 
 const chartData = [
@@ -64,25 +70,25 @@ const chartConfig = {
 
 export default function Home() {
   return (
-    <div className="p-6 bg-gray-900 min-h-screen space-y-6">
+    <div className="p-0  bg-[#000] min-h-screen space-y-6">
       <div className="flex flex-wrap gap-6">
         {[
           {
-            title: "New Customer",
-            value: "630",
+            title: "Students",
+            value: "2000",
             description: "Last month: 510",
             trend: "+19.04%",
             trendColor: "text-green-500",
           },
           {
-            title: "Total Order",
-            value: "1,300",
+            title: "Teachers",
+            value: "300",
             description: "Last month: 980",
             trend: "+32.65%",
             trendColor: "text-green-500",
           },
           {
-            title: "Total Profit",
+            title: "Total     ",
             value: "$30,000",
             description: "Last month: 21,000",
             trend: "+30.00%",
@@ -91,7 +97,7 @@ export default function Home() {
         ].map((card, index) => (
           <Card
             key={index}
-            className="shadow-md flex-1 min-w-[250px] h-[160px]"
+            className="shadow-md flex-1 min-w-[250px] h-[140px]"
           >
             <CardHeader className="flex justify-between items-start p-4">
               <CardTitle className="text-lg font-bold">{card.title}</CardTitle>
@@ -144,19 +150,26 @@ export default function Home() {
                   content={<ChartTooltipContent indicator="line" />}
                 />
                 <Bar dataKey="desktop" layout="vertical" fill="#fff" radius={4}>
-                  {/* Month Labels */}
                   <LabelList
                     dataKey="month"
                     position="insideLeft"
                     offset={8}
-                    style={{ fill: "#000", fontSize: 12, fontWeight: "bold" }}
+                    style={{
+                      fill: "#000",
+                      fontSize: 12,
+                      fontWeight: "semi-bold",
+                    }}
                   />
 
                   <LabelList
                     dataKey="desktop"
                     position="right"
                     offset={8}
-                    style={{ fill: "#fff", fontSize: 12, fontWeight: "bold" }}
+                    style={{
+                      fill: "#fff",
+                      fontSize: 12,
+                      fontWeight: "semi-bold",
+                    }}
                   />
                 </Bar>
               </BarChart>
@@ -166,7 +179,7 @@ export default function Home() {
             <div className="flex gap-2 font-medium leading-none">
               Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
             </div>
-            <div className="leading-none text-muted-foreground">
+            <div className="leading-none text-muted-foreground text-white">
               Showing total visitors for the last 6 months
             </div>
           </CardFooter>
