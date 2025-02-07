@@ -8,6 +8,15 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+  SidebarMenuSub,
+  SidebarMenuSubItem,
+} from "@/components/ui/sidebar";
+
 import {
   Home,
   User,
@@ -27,23 +36,141 @@ import {
 import Link from "next/link";
 
 const items = [
-  { title: "Home", url: "/home", icon: Home },
-  { title: "Admins", url: "/admins", icon: User },
-  { title: "Teachers", url: "/teachers", icon: Users },
-  { title: "Students", url: "/students", icon: Users },
-  { title: "Classes", url: "/classes", icon: Calendar },
-  { title: "Lessons", url: "/lessons", icon: BookOpen },
-  { title: "Exams", url: "/exams", icon: FileText },
-  { title: "Assignments", url: "/assignments", icon: FileText },
-  { title: "Results", url: "/results", icon: BarChart2 },
-  { title: "Attendance", url: "/attendance", icon: CheckCircle },
-  { title: "Events", url: "/events", icon: Bell },
-  { title: "Messages", url: "/messages", icon: MessageCircle },
-  { title: "Announcements", url: "/announcements", icon: Archive },
-  { title: "Subjects", url: "/subjects", icon: BookOpen },
-  { title: "Settings", url: "/settings", icon: Settings },
-  { title: "Logout", url: "/logout", icon: LogOut },
-  { title: "About", url: "/about", icon: Info },
+  {
+    title: "Analitika",
+    url: "/home",
+    icon: Home,
+    child: [],
+  },
+  {
+    title: "Teachers",
+    url: "/teachers",
+    icon: Users,
+    child: [
+      { title: "Add Teacher", url: "/teachers/add" },
+      { title: "View Teachers", url: "/teachers/view" },
+    ],
+  },
+  {
+    title: "Students",
+    url: "/students",
+    icon: Users,
+    child: [
+      { title: "Davomat", url: "/students/davomat" },
+      { title: "Talabalar Ro'yxati", url: "/students/list" },
+      { title: "Aktiv", url: "/students/aktiv" },
+      { title: "Arxiv", url: "/students/arxiv" },
+      { title: "Ota-ona", url: "/students/parent" },
+    ],
+  },
+  {
+    title: "HR",
+    url: "/classes",
+    icon: Calendar,
+    child: [
+      { title: "Ro'llar", url: "/classes/rol" },
+      { title: "Hodimlar", url: "/classes/xodim" },
+    ],
+  },
+  {
+    title: "Kurslar",
+    url: "/lessons",
+    icon: BookOpen,
+    child: [
+      { title: "Add Lesson", url: "/lessons/add" },
+      { title: "View Lessons", url: "/lessons/view" },
+    ],
+  },
+  {
+    title: "Exams",
+    url: "/exams",
+    icon: FileText,
+    child: [
+      { title: "Add Exam", url: "/exams/add" },
+      { title: "View Exams", url: "/exams/view" },
+    ],
+  },
+  {
+    title: "Assignments",
+    url: "/assignments",
+    icon: FileText,
+    child: [
+      { title: "Add Assignment", url: "/assignments/add" },
+      { title: "View Assignments", url: "/assignments/view" },
+    ],
+  },
+  {
+    title: "Results",
+    url: "/results",
+    icon: BarChart2,
+    child: [{ title: "View Results", url: "/results/view" }],
+  },
+  {
+    title: "Attendance",
+    url: "/attendance",
+    icon: CheckCircle,
+    child: [
+      { title: "Mark Attendance", url: "/attendance/mark" },
+      { title: "View Attendance", url: "/attendance/view" },
+    ],
+  },
+  {
+    title: "Events",
+    url: "/events",
+    icon: Bell,
+    child: [
+      { title: "Add Event", url: "/events/add" },
+      { title: "View Events", url: "/events/view" },
+    ],
+  },
+  {
+    title: "Messages",
+    url: "/messages",
+    icon: MessageCircle,
+    child: [
+      { title: "Compose Message", url: "/messages/compose" },
+      { title: "Inbox", url: "/messages/inbox" },
+    ],
+  },
+  {
+    title: "Announcements",
+    url: "/announcements",
+    icon: Archive,
+    child: [
+      { title: "Add Announcement", url: "/announcements/add" },
+      { title: "View Announcements", url: "/announcements/view" },
+    ],
+  },
+  {
+    title: "Subjects",
+    url: "/subjects",
+    icon: BookOpen,
+    child: [
+      { title: "Add Subject", url: "/subjects/add" },
+      { title: "View Subjects", url: "/subjects/view" },
+    ],
+  },
+  {
+    title: "Settings",
+    url: "/settings",
+    icon: Settings,
+    child: [
+      { title: "Profile Settings", url: "/settings/profile" },
+      { title: "Account Settings", url: "/settings/account" },
+    ],
+  },
+  {
+    title: "Logout",
+    url: "/logout",
+    icon: LogOut,
+    child: [], // Logoutda child kerak bo'lmasligi mumkin
+  },
+  {
+    title: "About",
+    url: "/about",
+    icon: Info,
+    child: [], // Aboutda ham child bo'lishi shart emas
+  },
 ];
 
 export function AppSidebar() {
@@ -66,19 +193,18 @@ export function AppSidebar() {
 
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <Link
-                      href={item.url}
-                      className="flex items-center space-x-3 p-3 text-sm text-gray rounded"
-                    >
-                      <item.icon className="w-5 h-5" />
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
+              <Collapsible defaultOpen className="group/collapsible">
+                <SidebarMenuItem>
+                  <CollapsibleTrigger asChild>
+                    <SidebarMenuButton />
+                  </CollapsibleTrigger>
+                  <CollapsibleContent>
+                    <SidebarMenuSub>
+                      <SidebarMenuSubItem />
+                    </SidebarMenuSub>
+                  </CollapsibleContent>
                 </SidebarMenuItem>
-              ))}
+              </Collapsible>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
