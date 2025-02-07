@@ -7,19 +7,18 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 
 import {
   Collapsible,
   CollapsibleTrigger,
   CollapsibleContent,
-  SidebarMenuSub,
-  SidebarMenuSubItem,
-} from "@/components/ui/sidebar";
+} from "@/components/ui/collapsible";
 
 import {
   Home,
-  User,
   Users,
   Calendar,
   BookOpen,
@@ -172,7 +171,6 @@ const items = [
     child: [], // Aboutda ham child bo'lishi shart emas
   },
 ];
-
 export function AppSidebar() {
   return (
     <Sidebar className="bg-[#09090B] text-white w-64 h-screen">
@@ -193,18 +191,29 @@ export function AppSidebar() {
 
           <SidebarGroupContent>
             <SidebarMenu>
-              <Collapsible defaultOpen className="group/collapsible">
-                <SidebarMenuItem>
-                  <CollapsibleTrigger asChild>
-                    <SidebarMenuButton />
-                  </CollapsibleTrigger>
-                  <CollapsibleContent>
-                    <SidebarMenuSub>
-                      <SidebarMenuSubItem />
-                    </SidebarMenuSub>
-                  </CollapsibleContent>
-                </SidebarMenuItem>
-              </Collapsible>
+              {items.map((item) => (
+                <Collapsible key={item.title} defaultOpen>
+                  <SidebarMenuItem>
+                    <CollapsibleTrigger asChild>
+                      <SidebarMenuButton>
+                        <item.icon />
+                        <Link href={item.url}>{item.title}</Link>
+                      </SidebarMenuButton>
+                    </CollapsibleTrigger>
+                  </SidebarMenuItem>
+                  {item.child.length > 0 && (
+                    <CollapsibleContent>
+                      <SidebarMenuSub>
+                        {item.child.map((subItem) => (
+                          <SidebarMenuSubItem key={subItem.title}>
+                            <Link href={subItem.url}>{subItem.title}</Link>
+                          </SidebarMenuSubItem>
+                        ))}
+                      </SidebarMenuSub>
+                    </CollapsibleContent>
+                  )}
+                </Collapsible>
+              ))}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
