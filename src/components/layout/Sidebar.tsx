@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Sidebar,
   SidebarContent,
@@ -5,9 +7,6 @@ import {
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarMenuSub,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 
@@ -31,6 +30,7 @@ import {
   Settings,
   LogOut,
   Info,
+  ChevronRight,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -171,11 +171,13 @@ const items = [
     child: [], // Aboutda ham child bo'lishi shart emas
   },
 ];
+
 export function AppSidebar() {
   return (
     <Sidebar className="bg-[#09090B] text-white w-64 h-screen">
-      <SidebarContent className="bg-[#09090B] h-screen ">
+      <SidebarContent className="bg-[#09090B] h-screen">
         <SidebarGroup>
+          {/* Sidebar Header */}
           <SidebarGroupLabel className="font-bold pt-8 pl-3 pb-8 border-b gap-3 border-gray-700 text-white sticky top-0 bg-black z-50">
             <img
               width={40}
@@ -189,35 +191,54 @@ export function AppSidebar() {
             </span>
           </SidebarGroupLabel>
 
+          {/* Sidebar Menu */}
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
-                <Collapsible key={item.title} defaultOpen>
-                  <SidebarMenuItem>
-                    <CollapsibleTrigger asChild>
-                      <SidebarMenuButton>
-                        <item.icon />
-                        <Link href={item.url}>{item.title}</Link>
-                      </SidebarMenuButton>
-                    </CollapsibleTrigger>
-                  </SidebarMenuItem>
-                  {item.child.length > 0 && (
-                    <CollapsibleContent>
-                      <SidebarMenuSub>
-                        {item.child.map((subItem) => (
-                          <SidebarMenuSubItem key={subItem.title}>
-                            <Link href={subItem.url}>{subItem.title}</Link>
-                          </SidebarMenuSubItem>
-                        ))}
-                      </SidebarMenuSub>
-                    </CollapsibleContent>
-                  )}
-                </Collapsible>
+                <SidebarItem key={item.title} item={item} />
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
+  );
+}
+
+function SidebarItem({ item }) {
+  return (
+    <Collapsible className="mb-2" defaultOpen={false}>
+      <CollapsibleTrigger asChild>
+        <button className="flex items-center justify-between w-full p-2 hover:bg-gray-800 rounded group">
+          <div className="flex items-center">
+            <item.icon className="mr-2" />
+            <Link href={item.url} className="text-white">
+              {item.title}
+            </Link>
+          </div>
+          {item.child.length > 0 && (
+            <ChevronRight className="transition-transform duration-200 ease-in-out transform group-data-[state=open]:rotate-90" />
+          )}
+        </button>
+      </CollapsibleTrigger>
+
+      {/* Content */}
+      {Array.isArray(item.child) && item.child.length > 0 && (
+        <CollapsibleContent>
+          <div className="pl-6 mt-2">
+            {item.child.map((subItem) => (
+              <SidebarMenuSubItem key={subItem.url}>
+                <Link
+                  href={subItem.url}
+                  className="block text-sm text-gray-300 hover:text-white py-1"
+                >
+                  {subItem.title}
+                </Link>
+              </SidebarMenuSubItem>
+            ))}
+          </div>
+        </CollapsibleContent>
+      )}
+    </Collapsible>
   );
 }
