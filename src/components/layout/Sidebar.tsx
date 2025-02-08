@@ -162,13 +162,13 @@ const items = [
     title: "Logout",
     url: "/logout",
     icon: LogOut,
-    child: [], // Logoutda child kerak bo'lmasligi mumkin
+    child: [],
   },
   {
     title: "About",
     url: "/about",
     icon: Info,
-    child: [], // Aboutda ham child bo'lishi shart emas
+    child: [],
   },
 ];
 
@@ -177,7 +177,6 @@ export function AppSidebar() {
     <Sidebar className="bg-[#09090B] text-white w-64 h-screen">
       <SidebarContent className="bg-[#09090B] h-screen">
         <SidebarGroup>
-          {/* Sidebar Header */}
           <SidebarGroupLabel className="font-bold pt-8 pl-3 pb-8 border-b gap-3 border-gray-700 text-white sticky top-0 bg-black z-50">
             <img
               width={40}
@@ -191,9 +190,8 @@ export function AppSidebar() {
             </span>
           </SidebarGroupLabel>
 
-          {/* Sidebar Menu */}
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="text-xs">
               {items.map((item) => (
                 <SidebarItem key={item.title} item={item} />
               ))}
@@ -207,7 +205,7 @@ export function AppSidebar() {
 
 function SidebarItem({ item }) {
   return (
-    <Collapsible className="mb-2" defaultOpen={false}>
+    <Collapsible defaultOpen={false}>
       <CollapsibleTrigger asChild>
         <button className="flex items-center justify-between w-full p-2 hover:bg-gray-800 rounded group">
           <div className="flex items-center">
@@ -217,12 +215,11 @@ function SidebarItem({ item }) {
             </Link>
           </div>
           {item.child.length > 0 && (
-            <ChevronRight className="transition-transform duration-200 ease-in-out transform group-data-[state=open]:rotate-90" />
+            <ChevronRight className="text-xs transition-transform duration-200 ease-in-out transform group-data-[state=open]:rotate-90" />
           )}
         </button>
       </CollapsibleTrigger>
 
-      {/* Content */}
       {Array.isArray(item.child) && item.child.length > 0 && (
         <CollapsibleContent>
           <div className="pl-6 mt-2">
